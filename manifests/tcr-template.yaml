@@ -1,0 +1,25 @@
+kind: ethereum/contract
+name: TcrTemplate
+network:
+source:
+  abi: Tcr
+mapping:
+  kind: ethereum/events
+  apiVersion: 0.0.5
+  language: wasm/assemblyscript
+  file: ./src/tcr-mapping.ts
+  entities:
+    - Registry
+    - Vote
+    - Voter
+    - EventTransaction
+  abis:
+    - name: Tcr
+      file: ./abis/Tcr.json
+  eventHandlers:
+    - event: "ClaimTokens(indexed address,uint256)"
+      handler: handleClaimTokens
+    - event: "VoteCasted(uint56,indexed address,uint152,uint48)"
+      handler: handleVoteCasted
+    - event: "TokensReleased(uint56,indexed address,uint152,uint48)"
+      handler: handleTokensReleased

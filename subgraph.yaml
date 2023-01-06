@@ -1,0 +1,52 @@
+specVersion: 0.0.2
+description: DAOHaus V3 Subgraph
+repository: 'https://github.com/hausdao/daohaus-v3-subgraph-sandbox'
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TcrSummoner
+    network: goerli
+    source:
+      address: '0x22cB70eB78a2956d87231A36943d5e5F32b68192'
+      abi: TcrSummoner
+      startBlock: 8262213
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Registry
+      abis:
+        - name: TcrSummoner
+          file: ./abis/TcrSummoner.json
+      eventHandlers:
+        - event: 'SummonDaoStake(indexed address,indexed address,uint256,string)'
+          handler: handleSummonDaoStake
+      file: ./src/tcr-summoner-mapping.ts
+templates:
+  - kind: ethereum/contract
+    name: TcrTemplate
+    network: goerli
+    source:
+      abi: Tcr
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/tcr-mapping.ts
+      entities:
+        - Registry
+        - Vote
+        - Voter
+        - EventTransaction
+      abis:
+        - name: Tcr
+          file: ./abis/Tcr.json
+      eventHandlers:
+        - event: 'ClaimTokens(indexed address,uint256)'
+          handler: handleClaimTokens
+        - event: 'VoteCasted(uint56,indexed address,uint152,uint48)'
+          handler: handleVoteCasted
+        - event: 'TokensReleased(uint56,indexed address,uint152,uint48)'
+          handler: handleTokensReleased

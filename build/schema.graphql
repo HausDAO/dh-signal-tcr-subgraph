@@ -1,0 +1,36 @@
+type Registry @entity {
+  # contract address of the tcr
+  id: ID!
+  createdAt: BigInt!
+  snapshotId: BigInt!
+  dao: Bytes!
+  voters: [Voter!] @derivedFrom(field: "registry")
+  votes: [Vote!] @derivedFrom(field: "registry")
+}
+
+type Voter @entity {
+  id: ID!
+  createdAt: BigInt!
+  address: Bytes!
+  balance: BigInt!
+  registry: Registry!
+  votes: [Vote!] @derivedFrom(field: "voter")
+}
+
+type Vote @entity {
+  id: ID!
+  createdAt: BigInt!
+  # uint56
+  voteId: BigInt!
+  # unint 48
+  choiceId: BigInt!
+  amount: BigInt!
+  released: Boolean!
+  registry: Registry!
+  voter: Voter!
+}
+
+type EventTransaction @entity {
+  id: ID!
+  createdAt: BigInt!
+}

@@ -1,0 +1,20 @@
+kind: ethereum/contract
+name: TcrSummoner
+network:
+source:
+  address: ""
+  abi: TcrSummoner
+  startBlock:
+mapping:
+  kind: ethereum/events
+  apiVersion: 0.0.5
+  language: wasm/assemblyscript
+  entities:
+    - Registry
+  abis:
+    - name: TcrSummoner
+      file: ./abis/TcrSummoner.json
+  eventHandlers:
+    - event: SummonDaoStake(indexed address,indexed address,uint256,string)
+      handler: handleSummonDaoStake
+  file: ./src/tcr-summoner-mapping.ts

@@ -1,7 +1,19 @@
 [
-  { "inputs": [], "name": "INVALID_AMOUNT", "type": "error" },
-  { "inputs": [], "name": "NOT_OWNER", "type": "error" },
-  { "inputs": [], "name": "TOKENS_ALREADY_CLAIMED", "type": "error" },
+  {
+    "inputs": [],
+    "name": "INVALID_AMOUNT",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NOT_OWNER",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "TOKENS_ALREADY_CLAIMED",
+    "type": "error"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -19,6 +31,25 @@
       }
     ],
     "name": "ClaimTokens",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sharesSnapshotId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "lootSnapshotId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Init",
     "type": "event"
   },
   {
@@ -98,10 +129,20 @@
   },
   {
     "inputs": [
-      { "internalType": "uint56", "name": "_voteId", "type": "uint56" }
+      {
+        "internalType": "uint56",
+        "name": "_voteId",
+        "type": "uint56"
+      }
     ],
     "name": "areTokensLocked",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -109,7 +150,11 @@
     "inputs": [],
     "name": "baal",
     "outputs": [
-      { "internalType": "contract IBAAL", "name": "", "type": "address" }
+      {
+        "internalType": "contract IBAAL",
+        "name": "",
+        "type": "address"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -118,7 +163,11 @@
     "inputs": [],
     "name": "baalLoot",
     "outputs": [
-      { "internalType": "contract IBAALTOKEN", "name": "", "type": "address" }
+      {
+        "internalType": "contract IBAALTOKEN",
+        "name": "",
+        "type": "address"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -127,17 +176,31 @@
     "inputs": [],
     "name": "baalShares",
     "outputs": [
-      { "internalType": "contract IBAALTOKEN", "name": "", "type": "address" }
+      {
+        "internalType": "contract IBAALTOKEN",
+        "name": "",
+        "type": "address"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "account", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
     ],
     "name": "claim",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -145,8 +208,16 @@
     "inputs": [
       {
         "components": [
-          { "internalType": "uint48", "name": "choiceId", "type": "uint48" },
-          { "internalType": "uint152", "name": "amount", "type": "uint152" }
+          {
+            "internalType": "uint48",
+            "name": "choiceId",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint152",
+            "name": "amount",
+            "type": "uint152"
+          }
         ],
         "internalType": "struct DhSignalTCR.BatchVoteParam[]",
         "name": "_batch",
@@ -161,23 +232,53 @@
   {
     "inputs": [],
     "name": "currentTimestamp",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_voter", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_voter",
+        "type": "address"
+      }
     ],
     "name": "getVotesForAddress",
     "outputs": [
       {
         "components": [
-          { "internalType": "bool", "name": "released", "type": "bool" },
-          { "internalType": "address", "name": "voter", "type": "address" },
-          { "internalType": "uint152", "name": "amount", "type": "uint152" },
-          { "internalType": "uint48", "name": "choiceId", "type": "uint48" },
-          { "internalType": "uint56", "name": "voteId", "type": "uint56" }
+          {
+            "internalType": "bool",
+            "name": "released",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "voter",
+            "type": "address"
+          },
+          {
+            "internalType": "uint152",
+            "name": "amount",
+            "type": "uint152"
+          },
+          {
+            "internalType": "uint48",
+            "name": "choiceId",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint56",
+            "name": "voteId",
+            "type": "uint56"
+          }
         ],
         "internalType": "struct DhSignalTCR.Vote[]",
         "name": "",
@@ -190,13 +291,23 @@
   {
     "inputs": [],
     "name": "lootSnapshotId",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "uint256[]", "name": "_voteIds", "type": "uint256[]" }
+      {
+        "internalType": "uint256[]",
+        "name": "_voteIds",
+        "type": "uint256[]"
+      }
     ],
     "name": "releaseTokens",
     "outputs": [],
@@ -205,7 +316,11 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_baalAddress", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "_baalAddress",
+        "type": "address"
+      }
     ],
     "name": "setUp",
     "outputs": [],
@@ -215,7 +330,13 @@
   {
     "inputs": [],
     "name": "sharesSnapshotId",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -223,8 +344,16 @@
     "inputs": [
       {
         "components": [
-          { "internalType": "uint48", "name": "choiceId", "type": "uint48" },
-          { "internalType": "uint152", "name": "amount", "type": "uint152" }
+          {
+            "internalType": "uint48",
+            "name": "choiceId",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint152",
+            "name": "amount",
+            "type": "uint152"
+          }
         ],
         "internalType": "struct DhSignalTCR.BatchVoteParam[]",
         "name": "_batch",
@@ -237,34 +366,88 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "voterBalances",
     "outputs": [
-      { "internalType": "bool", "name": "claimed", "type": "bool" },
-      { "internalType": "uint256", "name": "balance", "type": "uint256" }
+      {
+        "internalType": "bool",
+        "name": "claimed",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "balance",
+        "type": "uint256"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "", "type": "address" },
-      { "internalType": "uint256", "name": "", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
     "name": "voterToVoteIds",
-    "outputs": [{ "internalType": "uint56", "name": "", "type": "uint56" }],
+    "outputs": [
+      {
+        "internalType": "uint56",
+        "name": "",
+        "type": "uint56"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "name": "votes",
     "outputs": [
-      { "internalType": "bool", "name": "released", "type": "bool" },
-      { "internalType": "address", "name": "voter", "type": "address" },
-      { "internalType": "uint152", "name": "amount", "type": "uint152" },
-      { "internalType": "uint48", "name": "choiceId", "type": "uint48" },
-      { "internalType": "uint56", "name": "voteId", "type": "uint56" }
+      {
+        "internalType": "bool",
+        "name": "released",
+        "type": "bool"
+      },
+      {
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
+      },
+      {
+        "internalType": "uint152",
+        "name": "amount",
+        "type": "uint152"
+      },
+      {
+        "internalType": "uint48",
+        "name": "choiceId",
+        "type": "uint48"
+      },
+      {
+        "internalType": "uint56",
+        "name": "voteId",
+        "type": "uint56"
+      }
     ],
     "stateMutability": "view",
     "type": "function"

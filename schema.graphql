@@ -2,7 +2,9 @@ type Registry @entity {
   # contract address of the tcr
   id: ID!
   createdAt: BigInt!
-  snapshotId: BigInt!
+  sharesSnapshotId: BigInt!
+  lootSnapshotId: BigInt!
+  details: String!
   dao: Bytes!
   voters: [Voter!] @derivedFrom(field: "registry")
   votes: [Vote!] @derivedFrom(field: "registry")

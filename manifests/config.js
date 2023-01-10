@@ -8,8 +8,8 @@ module.exports.config = {
       {
         name: "tcrSummoner",
         template: "tcr-summoner-ds.yaml",
-        address: "0x22cB70eB78a2956d87231A36943d5e5F32b68192",
-        startBlock: 8262213,
+        address: "0x99BaeA1bA7929380bd0022F5920293862b1195f7",
+        startBlock: 8283918,
       },
     ],
     templates: [

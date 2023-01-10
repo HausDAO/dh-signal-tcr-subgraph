@@ -32,6 +32,28 @@ export class ClaimTokens__Params {
   }
 }
 
+export class Init extends ethereum.Event {
+  get params(): Init__Params {
+    return new Init__Params(this);
+  }
+}
+
+export class Init__Params {
+  _event: Init;
+
+  constructor(event: Init) {
+    this._event = event;
+  }
+
+  get sharesSnapshotId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get lootSnapshotId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
 export class Initialized extends ethereum.Event {
   get params(): Initialized__Params {
     return new Initialized__Params(this);

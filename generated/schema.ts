@@ -18,7 +18,9 @@ export class Registry extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("createdAt", Value.fromBigInt(BigInt.zero()));
-    this.set("snapshotId", Value.fromBigInt(BigInt.zero()));
+    this.set("sharesSnapshotId", Value.fromBigInt(BigInt.zero()));
+    this.set("lootSnapshotId", Value.fromBigInt(BigInt.zero()));
+    this.set("details", Value.fromString(""));
     this.set("dao", Value.fromBytes(Bytes.empty()));
   }
 
@@ -57,13 +59,31 @@ export class Registry extends Entity {
     this.set("createdAt", Value.fromBigInt(value));
   }
 
-  get snapshotId(): BigInt {
-    let value = this.get("snapshotId");
+  get sharesSnapshotId(): BigInt {
+    let value = this.get("sharesSnapshotId");
     return value!.toBigInt();
   }
 
-  set snapshotId(value: BigInt) {
-    this.set("snapshotId", Value.fromBigInt(value));
+  set sharesSnapshotId(value: BigInt) {
+    this.set("sharesSnapshotId", Value.fromBigInt(value));
+  }
+
+  get lootSnapshotId(): BigInt {
+    let value = this.get("lootSnapshotId");
+    return value!.toBigInt();
+  }
+
+  set lootSnapshotId(value: BigInt) {
+    this.set("lootSnapshotId", Value.fromBigInt(value));
+  }
+
+  get details(): string {
+    let value = this.get("details");
+    return value!.toString();
+  }
+
+  set details(value: string) {
+    this.set("details", Value.fromString(value));
   }
 
   get dao(): Bytes {

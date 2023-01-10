@@ -2,6 +2,7 @@ import { Registry } from "../generated/schema";
 import { TcrTemplate } from "../generated/templates";
 import { SummonDaoStake } from "../generated/TcrSummoner/TcrSummoner";
 import { addTransaction } from "./util/transactions";
+import { constants } from "./util/constants";
 
 export function handleSummonDaoStake(event: SummonDaoStake): void {
   const registryId = event.params.signal.toHexString();
@@ -14,8 +15,10 @@ export function handleSummonDaoStake(event: SummonDaoStake): void {
   TcrTemplate.create(event.params.signal);
 
   registry.createdAt = event.block.timestamp;
-  registry.snapshotId = event.block.number;
   registry.dao = event.params.baal;
+  registry.sharesSnapshotId = constants.BIGINT_ZERO;
+  registry.lootSnapshotId = constants.BIGINT_ZERO;
+  registry.details = event.params.details;
 
   registry.save();
 

@@ -17,6 +17,8 @@ mapping:
     - name: Tcr
       file: ./abis/Tcr.json
   eventHandlers:
+    - event: "Init(uint256,uint256)"
+      handler: handleInit
     - event: "ClaimTokens(indexed address,uint256)"
       handler: handleClaimTokens
     - event: "VoteCasted(uint56,indexed address,uint152,uint48)"

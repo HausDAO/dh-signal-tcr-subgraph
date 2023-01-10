@@ -1,11 +1,24 @@
 import { log } from "@graphprotocol/graph-ts";
-import { Vote, Voter } from "../generated/schema";
+import { Registry, Vote, Voter } from "../generated/schema";
 import {
+  Init,
   ClaimTokens,
   TokensReleased,
   VoteCasted,
 } from "../generated/templates/TcrTemplate/Tcr";
 import { addTransaction } from "./util/transactions";
+
+export function handleInit(event: Init): void {
+  const registry = Registry.load(event.address.toHexString());
+  if (registry === null) {
+    return;
+  }
+
+  registry.sharesSnapshotId = event.params.sharesSnapshotId;
+  registry.lootSnapshotId = event.params.lootSnapshotId;
+
+  registry.save();
+}
 
 export function handleClaimTokens(event: ClaimTokens): void {
   const voterId = event.address

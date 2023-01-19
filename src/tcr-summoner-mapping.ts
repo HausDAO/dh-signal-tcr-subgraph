@@ -19,6 +19,7 @@ export function handleSummonDaoStake(event: SummonDaoStake): void {
   registry.sharesSnapshotId = constants.BIGINT_ZERO;
   registry.lootSnapshotId = constants.BIGINT_ZERO;
   registry.details = event.params.details;
+  registry.endDate = event.params.endDate;
 
   registry.save();
 

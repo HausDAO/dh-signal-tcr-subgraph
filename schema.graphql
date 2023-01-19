@@ -4,6 +4,7 @@ type Registry @entity {
   createdAt: BigInt!
   sharesSnapshotId: BigInt!
   lootSnapshotId: BigInt!
+  endDate: BigInt!
   details: String!
   dao: Bytes!
   voters: [Voter!] @derivedFrom(field: "registry")
@@ -15,6 +16,7 @@ type Voter @entity {
   createdAt: BigInt!
   address: Bytes!
   balance: BigInt!
+  initialClaim: BigInt!
   registry: Registry!
   votes: [Vote!] @derivedFrom(field: "voter")
 }

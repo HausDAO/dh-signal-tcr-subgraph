@@ -15,6 +15,6 @@ mapping:
     - name: TcrSummoner
       file: ./abis/TcrSummoner.json
   eventHandlers:
-    - event: SummonDaoStake(indexed address,indexed address,uint256,string)
+    - event: SummonDaoStake(indexed address,indexed address,uint256,uint256,string)
       handler: handleSummonDaoStake
   file: ./src/tcr-summoner-mapping.ts

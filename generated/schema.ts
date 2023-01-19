@@ -20,6 +20,7 @@ export class Registry extends Entity {
     this.set("createdAt", Value.fromBigInt(BigInt.zero()));
     this.set("sharesSnapshotId", Value.fromBigInt(BigInt.zero()));
     this.set("lootSnapshotId", Value.fromBigInt(BigInt.zero()));
+    this.set("endDate", Value.fromBigInt(BigInt.zero()));
     this.set("details", Value.fromString(""));
     this.set("dao", Value.fromBytes(Bytes.empty()));
   }
@@ -75,6 +76,15 @@ export class Registry extends Entity {
 
   set lootSnapshotId(value: BigInt) {
     this.set("lootSnapshotId", Value.fromBigInt(value));
+  }
+
+  get endDate(): BigInt {
+    let value = this.get("endDate");
+    return value!.toBigInt();
+  }
+
+  set endDate(value: BigInt) {
+    this.set("endDate", Value.fromBigInt(value));
   }
 
   get details(): string {
@@ -138,6 +148,7 @@ export class Voter extends Entity {
     this.set("createdAt", Value.fromBigInt(BigInt.zero()));
     this.set("address", Value.fromBytes(Bytes.empty()));
     this.set("balance", Value.fromBigInt(BigInt.zero()));
+    this.set("initialClaim", Value.fromBigInt(BigInt.zero()));
     this.set("registry", Value.fromString(""));
   }
 
@@ -192,6 +203,15 @@ export class Voter extends Entity {
 
   set balance(value: BigInt) {
     this.set("balance", Value.fromBigInt(value));
+  }
+
+  get initialClaim(): BigInt {
+    let value = this.get("initialClaim");
+    return value!.toBigInt();
+  }
+
+  set initialClaim(value: BigInt) {
+    this.set("initialClaim", Value.fromBigInt(value));
   }
 
   get registry(): string {

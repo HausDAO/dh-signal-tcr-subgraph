@@ -35,8 +35,12 @@ export class SummonDaoStake__Params {
     return this._event.parameters[2].value.toBigInt();
   }
 
+  get endDate(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
   get details(): string {
-    return this._event.parameters[3].value.toString();
+    return this._event.parameters[4].value.toString();
   }
 }
 
@@ -60,11 +64,15 @@ export class TcrSummoner extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  summonSignalTCR(baal: Address, details: string): Address {
+  summonSignalTCR(baal: Address, endDate: BigInt, details: string): Address {
     let result = super.call(
       "summonSignalTCR",
-      "summonSignalTCR(address,string):(address)",
-      [ethereum.Value.fromAddress(baal), ethereum.Value.fromString(details)]
+      "summonSignalTCR(address,uint256,string):(address)",
+      [
+        ethereum.Value.fromAddress(baal),
+        ethereum.Value.fromUnsignedBigInt(endDate),
+        ethereum.Value.fromString(details)
+      ]
     );
 
     return result[0].toAddress();
@@ -72,12 +80,17 @@ export class TcrSummoner extends ethereum.SmartContract {
 
   try_summonSignalTCR(
     baal: Address,
+    endDate: BigInt,
     details: string
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "summonSignalTCR",
-      "summonSignalTCR(address,string):(address)",
-      [ethereum.Value.fromAddress(baal), ethereum.Value.fromString(details)]
+      "summonSignalTCR(address,uint256,string):(address)",
+      [
+        ethereum.Value.fromAddress(baal),
+        ethereum.Value.fromUnsignedBigInt(endDate),
+        ethereum.Value.fromString(details)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -138,8 +151,12 @@ export class SummonSignalTCRCall__Inputs {
     return this._call.inputValues[0].value.toAddress();
   }
 
+  get endDate(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
+  }
+
   get details(): string {
-    return this._call.inputValues[1].value.toString();
+    return this._call.inputValues[2].value.toString();
   }
 }
 

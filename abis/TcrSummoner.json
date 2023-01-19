@@ -29,6 +29,12 @@
       },
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "endDate",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "internalType": "string",
         "name": "details",
         "type": "string"
@@ -47,6 +53,7 @@
   {
     "inputs": [
       { "internalType": "address", "name": "baal", "type": "address" },
+      { "internalType": "uint256", "name": "endDate", "type": "uint256" },
       { "internalType": "string", "name": "details", "type": "string" }
     ],
     "name": "summonSignalTCR",

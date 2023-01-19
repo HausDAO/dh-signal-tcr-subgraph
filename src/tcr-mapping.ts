@@ -35,6 +35,7 @@ export function handleClaimTokens(event: ClaimTokens): void {
   voter.address = event.params.voter;
   voter.balance = event.params.amount;
   voter.registry = event.address.toHexString();
+  voter.initialClaim = event.params.amount;
 
   voter.save();
 

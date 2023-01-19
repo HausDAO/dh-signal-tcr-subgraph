@@ -295,22 +295,14 @@ export class Tcr extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  currentTimestamp(): BigInt {
-    let result = super.call(
-      "currentTimestamp",
-      "currentTimestamp():(uint256)",
-      []
-    );
+  endDate(): BigInt {
+    let result = super.call("endDate", "endDate():(uint256)", []);
 
     return result[0].toBigInt();
   }
 
-  try_currentTimestamp(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "currentTimestamp",
-      "currentTimestamp():(uint256)",
-      []
-    );
+  try_endDate(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("endDate", "endDate():(uint256)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -345,6 +337,21 @@ export class Tcr extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       value[0].toTupleArray<Tcr__getVotesForAddressResultValue0Struct>()
     );
+  }
+
+  isComplete(): boolean {
+    let result = super.call("isComplete", "isComplete():(bool)", []);
+
+    return result[0].toBoolean();
+  }
+
+  try_isComplete(): ethereum.CallResult<boolean> {
+    let result = super.tryCall("isComplete", "isComplete():(bool)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   lootSnapshotId(): BigInt {
@@ -614,6 +621,10 @@ export class SetUpCall__Inputs {
 
   get _baalAddress(): Address {
     return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _endDate(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
   }
 }
 

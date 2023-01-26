@@ -251,6 +251,7 @@ export class Vote extends Entity {
     this.set("choiceId", Value.fromBigInt(BigInt.zero()));
     this.set("amount", Value.fromBigInt(BigInt.zero()));
     this.set("released", Value.fromBoolean(false));
+    this.set("voterAddress", Value.fromBytes(Bytes.empty()));
     this.set("registry", Value.fromString(""));
     this.set("voter", Value.fromString(""));
   }
@@ -324,6 +325,15 @@ export class Vote extends Entity {
 
   set released(value: boolean) {
     this.set("released", Value.fromBoolean(value));
+  }
+
+  get voterAddress(): Bytes {
+    let value = this.get("voterAddress");
+    return value!.toBytes();
+  }
+
+  set voterAddress(value: Bytes) {
+    this.set("voterAddress", Value.fromBytes(value));
   }
 
   get registry(): string {

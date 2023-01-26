@@ -9,7 +9,9 @@
     "deploy-local": "graph deploy hausdao/dh-signal-tcr-goerli --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "build:all": "yarn codegen && yarn build",
     "prepare:goerli": "node manifests/deploy-prep.js goerli",
-    "deploy:goerli": "yarn prepare:goerli && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr-goerli"
+    "deploy:goerli": "yarn prepare:goerli && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr-goerli",
+    "prepare:mainnet": "node manifests/deploy-prep.js mainnet",
+    "deploy:mainnet": "yarn prepare:mainnet && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr"
   },
   "dependencies": {
     "@graphprotocol/graph-ts": "^0.22.1",

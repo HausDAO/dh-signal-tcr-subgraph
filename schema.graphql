@@ -30,6 +30,7 @@ type Vote @entity {
   choiceId: BigInt!
   amount: BigInt!
   released: Boolean!
+  voterAddress: Bytes!
   registry: Registry!
   voter: Voter!
 }

@@ -68,6 +68,7 @@ export function handleVoteCasted(event: VoteCasted): void {
   vote.released = false;
   vote.registry = event.address.toHexString();
   vote.voter = voterId;
+  vote.voterAddress = event.params.voter;
 
   vote.save();
 

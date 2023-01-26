@@ -1,7 +1,19 @@
 module.exports.config = {
   mainnet: {
-    dataSources: [],
-    templates: [],
+    dataSources: [
+      {
+        name: "tcrSummoner",
+        template: "tcr-summoner-ds.yaml",
+        address: "0x8E7d5b1EB2d2d212574eF363168e5B2ba750b20e",
+        startBlock: 16491825,
+      },
+    ],
+    templates: [
+      {
+        name: "tcrTemplate",
+        template: "tcr-template.yaml",
+      },
+    ],
   },
   goerli: {
     dataSources: [

@@ -10,6 +10,8 @@
     "build:all": "yarn codegen && yarn build",
     "prepare:goerli": "node manifests/deploy-prep.js goerli",
     "deploy:goerli": "yarn prepare:goerli && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr-goerli",
+    "prepare:xdai": "node manifests/deploy-prep.js xdai",
+    "deploy:xdai": "yarn prepare:xdai && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr-gnosis",
     "prepare:mainnet": "node manifests/deploy-prep.js mainnet",
     "deploy:mainnet": "yarn prepare:mainnet && yarn build:all && graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ hausdao/dh-signal-tcr"
   },

@@ -31,5 +31,20 @@ module.exports.config = {
       },
     ],
   },
-  xdai: {},
+  xdai: {
+    dataSources: [
+      {
+        name: "tcrSummoner",
+        template: "tcr-summoner-ds.yaml",
+        address: "0x3F0443a6985b0AB585D376cC84f6d42e74A3e1F1",
+        startBlock: 26229426,
+      },
+    ],
+    templates: [
+      {
+        name: "tcrTemplate",
+        template: "tcr-template.yaml",
+      },
+    ],
+  },
 };

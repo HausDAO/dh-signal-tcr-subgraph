@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: TcrSummoner
-    network: mainnet
+    network: xdai
     source:
-      address: "0x8E7d5b1EB2d2d212574eF363168e5B2ba750b20e"
+      address: "0x3F0443a6985b0AB585D376cC84f6d42e74A3e1F1"
       abi: TcrSummoner
-      startBlock: 16491825
+      startBlock: 26229426
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -27,7 +27,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: TcrTemplate
-    network: mainnet
+    network: xdai
     source:
       abi: Tcr
     mapping:

@@ -3,7 +3,7 @@
 import {
   Address,
   DataSourceTemplate,
-  DataSourceContext
+  DataSourceContext,
 } from "@graphprotocol/graph-ts";
 
 export class TcrTemplate extends DataSourceTemplate {
@@ -15,7 +15,7 @@ export class TcrTemplate extends DataSourceTemplate {
     DataSourceTemplate.createWithContext(
       "TcrTemplate",
       [address.toHex()],
-      context
+      context,
     );
   }
 }

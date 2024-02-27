@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class ClaimTokens extends ethereum.Event {
@@ -169,6 +169,14 @@ export class Tcr__voterBalancesResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
+
+  getClaimed(): boolean {
+    return this.value0;
+  }
+
+  getBalance(): BigInt {
+    return this.value1;
+  }
 }
 
 export class Tcr__votesResult {
@@ -183,7 +191,7 @@ export class Tcr__votesResult {
     value1: Address,
     value2: BigInt,
     value3: BigInt,
-    value4: BigInt
+    value4: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -201,6 +209,26 @@ export class Tcr__votesResult {
     map.set("value4", ethereum.Value.fromUnsignedBigInt(this.value4));
     return map;
   }
+
+  getReleased(): boolean {
+    return this.value0;
+  }
+
+  getVoter(): Address {
+    return this.value1;
+  }
+
+  getAmount(): BigInt {
+    return this.value2;
+  }
+
+  getChoiceId(): BigInt {
+    return this.value3;
+  }
+
+  getVoteId(): BigInt {
+    return this.value4;
+  }
 }
 
 export class Tcr extends ethereum.SmartContract {
@@ -212,7 +240,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.call(
       "areTokensLocked",
       "areTokensLocked(uint56):(bool)",
-      [ethereum.Value.fromUnsignedBigInt(_voteId)]
+      [ethereum.Value.fromUnsignedBigInt(_voteId)],
     );
 
     return result[0].toBoolean();
@@ -222,7 +250,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.tryCall(
       "areTokensLocked",
       "areTokensLocked(uint56):(bool)",
-      [ethereum.Value.fromUnsignedBigInt(_voteId)]
+      [ethereum.Value.fromUnsignedBigInt(_voteId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -278,7 +306,7 @@ export class Tcr extends ethereum.SmartContract {
 
   claim(account: Address): BigInt {
     let result = super.call("claim", "claim(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -286,7 +314,7 @@ export class Tcr extends ethereum.SmartContract {
 
   try_claim(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("claim", "claim(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -311,31 +339,31 @@ export class Tcr extends ethereum.SmartContract {
   }
 
   getVotesForAddress(
-    _voter: Address
+    _voter: Address,
   ): Array<Tcr__getVotesForAddressResultValue0Struct> {
     let result = super.call(
       "getVotesForAddress",
       "getVotesForAddress(address):((bool,address,uint152,uint48,uint56)[])",
-      [ethereum.Value.fromAddress(_voter)]
+      [ethereum.Value.fromAddress(_voter)],
     );
 
     return result[0].toTupleArray<Tcr__getVotesForAddressResultValue0Struct>();
   }
 
   try_getVotesForAddress(
-    _voter: Address
+    _voter: Address,
   ): ethereum.CallResult<Array<Tcr__getVotesForAddressResultValue0Struct>> {
     let result = super.tryCall(
       "getVotesForAddress",
       "getVotesForAddress(address):((bool,address,uint152,uint48,uint56)[])",
-      [ethereum.Value.fromAddress(_voter)]
+      [ethereum.Value.fromAddress(_voter)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTupleArray<Tcr__getVotesForAddressResultValue0Struct>()
+      value[0].toTupleArray<Tcr__getVotesForAddressResultValue0Struct>(),
     );
   }
 
@@ -364,7 +392,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.tryCall(
       "lootSnapshotId",
       "lootSnapshotId():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -377,7 +405,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.call(
       "sharesSnapshotId",
       "sharesSnapshotId():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -387,7 +415,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.tryCall(
       "sharesSnapshotId",
       "sharesSnapshotId():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -400,29 +428,29 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.call(
       "voterBalances",
       "voterBalances(address):(bool,uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return new Tcr__voterBalancesResult(
       result[0].toBoolean(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_voterBalances(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<Tcr__voterBalancesResult> {
     let result = super.tryCall(
       "voterBalances",
       "voterBalances(address):(bool,uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Tcr__voterBalancesResult(value[0].toBoolean(), value[1].toBigInt())
+      new Tcr__voterBalancesResult(value[0].toBoolean(), value[1].toBigInt()),
     );
   }
 
@@ -432,8 +460,8 @@ export class Tcr extends ethereum.SmartContract {
       "voterToVoteIds(address,uint256):(uint56)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return result[0].toBigInt();
@@ -441,15 +469,15 @@ export class Tcr extends ethereum.SmartContract {
 
   try_voterToVoteIds(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "voterToVoteIds",
       "voterToVoteIds(address,uint256):(uint56)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -462,7 +490,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.call(
       "votes",
       "votes(uint256):(bool,address,uint152,uint48,uint56)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return new Tcr__votesResult(
@@ -470,7 +498,7 @@ export class Tcr extends ethereum.SmartContract {
       result[1].toAddress(),
       result[2].toBigInt(),
       result[3].toBigInt(),
-      result[4].toBigInt()
+      result[4].toBigInt(),
     );
   }
 
@@ -478,7 +506,7 @@ export class Tcr extends ethereum.SmartContract {
     let result = super.tryCall(
       "votes",
       "votes(uint256):(bool,address,uint152,uint48,uint56)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -490,8 +518,8 @@ export class Tcr extends ethereum.SmartContract {
         value[1].toAddress(),
         value[2].toBigInt(),
         value[3].toBigInt(),
-        value[4].toBigInt()
-      )
+        value[4].toBigInt(),
+      ),
     );
   }
 }
@@ -548,9 +576,7 @@ export class ClaimAndVoteCall__Inputs {
   }
 
   get _batch(): Array<ClaimAndVoteCall_batchStruct> {
-    return this._call.inputValues[0].value.toTupleArray<
-      ClaimAndVoteCall_batchStruct
-    >();
+    return this._call.inputValues[0].value.toTupleArray<ClaimAndVoteCall_batchStruct>();
   }
 }
 

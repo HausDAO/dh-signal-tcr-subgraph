@@ -31,6 +31,22 @@ module.exports.config = {
       },
     ],
   },
+  sepolia: {
+    dataSources: [
+      {
+        name: "tcrSummoner",
+        template: "tcr-summoner-ds.yaml",
+        address: "0x763b61A62EF076ad960E1d513713B2aeD7C1b88e",
+        startBlock: 5369416,
+      },
+    ],
+    templates: [
+      {
+        name: "tcrTemplate",
+        template: "tcr-template.yaml",
+      },
+    ],
+  },
   xdai: {
     dataSources: [
       {

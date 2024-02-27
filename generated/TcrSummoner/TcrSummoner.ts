@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class SummonDaoStake extends ethereum.Event {
@@ -71,8 +71,8 @@ export class TcrSummoner extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(baal),
         ethereum.Value.fromUnsignedBigInt(endDate),
-        ethereum.Value.fromString(details)
-      ]
+        ethereum.Value.fromString(details),
+      ],
     );
 
     return result[0].toAddress();
@@ -81,7 +81,7 @@ export class TcrSummoner extends ethereum.SmartContract {
   try_summonSignalTCR(
     baal: Address,
     endDate: BigInt,
-    details: string
+    details: string,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "summonSignalTCR",
@@ -89,8 +89,8 @@ export class TcrSummoner extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(baal),
         ethereum.Value.fromUnsignedBigInt(endDate),
-        ethereum.Value.fromString(details)
-      ]
+        ethereum.Value.fromString(details),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
